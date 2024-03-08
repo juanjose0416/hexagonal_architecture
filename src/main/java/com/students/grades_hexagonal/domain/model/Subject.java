@@ -6,9 +6,9 @@ public class Subject {
 
     private Long id;
     private String name;
-    private List<Grades> grades;
+    private List<Grade> grades;
 
-    public Subject(Long id, String name, List<Grades> grades) {
+    public Subject(Long id, String name, List<Grade> grades) {
         this.id = id;
         this.name = name;
         this.grades = grades;
@@ -33,17 +33,17 @@ public class Subject {
         this.name = name;
     }
 
-    public List<Grades> getGrades() {
+    public List<Grade> getGrades() {
         return grades;
     }
 
-    public void setGrades(List<Grades> grades) {
+    public void setGrades(List<Grade> grades) {
         this.grades = grades;
     }
 
     public double calculateAverage(){
         return grades.stream()
-                .mapToDouble(Grades::getMark)
+                .mapToDouble(Grade::getMark)
                 .average()
                 .orElse(0.0);
     }

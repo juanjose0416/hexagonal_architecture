@@ -1,16 +1,16 @@
 package com.students.grades_hexagonal.domain.model;
 
-public class Grades {
+public class Grade {
 
     private double mark;
     private String gradingPeriod;
 
-    public Grades(double mark, String gradingPeriod) {
+    public Grade(double mark, String gradingPeriod) {
         this.mark = mark;
         this.gradingPeriod = gradingPeriod;
     }
 
-    public Grades() {
+    public Grade() {
     }
 
 
