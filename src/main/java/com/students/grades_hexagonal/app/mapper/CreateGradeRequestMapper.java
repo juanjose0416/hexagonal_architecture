@@ -12,7 +12,7 @@ import com.students.grades_hexagonal.domain.model.Subject;
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
-public interface CreateRequestMapper {
+public interface CreateGradeRequestMapper {
 
     @Mapping(source = "createGradeRequest.studentId", target = "identificationCode")
     Student toStudent(CreateGradeRequest createGradeRequest);

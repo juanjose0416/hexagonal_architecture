@@ -4,19 +4,30 @@ import java.util.List;
 
 public class Student {
 
+    private Long id;
     private String identificationCode;
     private String name;
     private List<Subject> subjects;
 
-    public Student(String identificationCode,
+    public Student(Long id,
+                   String identificationCode,
                    String name,
                    List<Subject> subjects) {
+        this.id = id;
         this.identificationCode = identificationCode;
         this.name = name;
         this.subjects = subjects;
     }
 
     public Student() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getIdentificationCode() {
