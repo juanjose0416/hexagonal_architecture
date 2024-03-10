@@ -4,6 +4,6 @@ import com.students.grades_hexagonal.domain.model.Subject;
 
 public interface SubjectService {
 
-    Subject saveSubject(Subject subject);
+    Subject getSubjectById(Long subjectId);
 
 }

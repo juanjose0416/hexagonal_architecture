@@ -16,8 +16,8 @@ public class SubjectServiceImpl implements SubjectService{
     }
 
     @Override
-    public Subject saveSubject(Subject subject) {
-        return subjectPersistencePort.saveSubject(subject);
+    public Subject getSubjectById(Long subjectId) {
+        return subjectPersistencePort.getSubjectById(subjectId);
     }
 
 }

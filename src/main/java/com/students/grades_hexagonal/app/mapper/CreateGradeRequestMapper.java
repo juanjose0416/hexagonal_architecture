@@ -3,6 +3,7 @@ package com.students.grades_hexagonal.app.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 
 import com.students.grades_hexagonal.app.dto.request.CreateGradeRequest;
 import com.students.grades_hexagonal.domain.model.Grade;
@@ -12,13 +13,11 @@ import com.students.grades_hexagonal.domain.model.Subject;
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Component
 public interface CreateGradeRequestMapper {
 
-    @Mapping(source = "createGradeRequest.studentId", target = "identificationCode")
-    Student toStudent(CreateGradeRequest createGradeRequest);
-
-    @Mapping(source = "createGradeRequest.subjectId", target = "id")
-    Subject toSubject(CreateGradeRequest createGradeRequest);
+    @Mapping(source = "studentId", target = "identificationCode")
+    Student toStudent(String studentId);
 
     @Mapping(source = "createGradeRequest.mark", target = "mark")
     @Mapping(source = "createGradeRequest.gradingPeriod", target = "gradingPeriod")

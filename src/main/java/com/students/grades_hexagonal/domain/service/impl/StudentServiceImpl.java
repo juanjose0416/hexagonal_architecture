@@ -16,8 +16,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student saveStudent(Student student) {
-        return studentPersistencePort.saveStudent(student);
+    public Student getStudentById(String studentId) {
+        return studentPersistencePort.getStudentById(studentId);
     }
 
 }
