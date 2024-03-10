@@ -40,8 +40,10 @@ public class GradeServiceImpl implements GradeService {
     @Override
     public Double average(Long studentId, Long subjectId) {
         List<Grade> gradeList = gradePersistencePort.getGradesByStudentIdAndSubjectId(studentId, subjectId);
-        return gradeList.stream().mapToDouble(Grade::getMark).average()
-                .orElseThrow(() -> new GradesNotFoundException("There aren't grades to calculate the averahge"));
+        if (gradeList.size() < MAX_GRADES) {
+            throw new GradesNotFoundException("The student must be three grades");
+        }
+        return gradeList.stream().mapToDouble(Grade::getMark).average().orElse(0.0);
     }
 
 }
