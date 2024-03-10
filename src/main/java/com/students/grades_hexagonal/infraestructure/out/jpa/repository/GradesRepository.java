@@ -12,4 +12,9 @@ import com.students.grades_hexagonal.infraestructure.out.jpa.entity.GradesEntity
 public interface GradesRepository extends JpaRepository<GradesEntity, Long> {
 
     Optional<List<GradesEntity>> findByStudentIdAndSubjectId(Long studentId, Long subjectId);
+
+    Optional<GradesEntity> findByStudentIdAndSubjectIdAndGradingPeriod(Long studentId,
+                                                                                     Long subjectId,
+                                                                                     String gradingPeriod);
+
 }

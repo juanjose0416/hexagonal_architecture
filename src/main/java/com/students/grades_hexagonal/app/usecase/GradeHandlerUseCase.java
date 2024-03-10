@@ -11,4 +11,6 @@ public interface GradeHandlerUseCase {
 
     GradeStudentResponse getAllGrades(String studentId) throws JsonProcessingException;
 
+    void updateGrade(String studentId, Long subjectId, CreateGradeRequest request);
+
 }

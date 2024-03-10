@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.students.grades_hexagonal.domain.exception.GradesNotFoundException;
 import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.domain.model.Student;
 import com.students.grades_hexagonal.domain.model.Subject;
@@ -47,6 +48,16 @@ public class GradePersistenceAdapter implements GradePersistencePort {
         List<GradesEntity> gradesEntities = gradesRepository.findByStudentIdAndSubjectId(studentId, subjectId)
                 .orElse(Collections.emptyList());
         return gradesEntities.stream().map(gradesEntityMapper::toGrade).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateGrades(Student student, Subject subject, Grade grade) {
+        GradesEntity gradesEntity = gradesRepository
+                .findByStudentIdAndSubjectIdAndGradingPeriod(student.getId(), subject.getId(), grade.getGradingPeriod())
+                .orElseThrow(() -> new GradesNotFoundException("Grade not found for period"));
+        gradesEntity.setMark(grade.getMark());
+        gradesRepository.save(gradesEntity);
+
     }
 
 }

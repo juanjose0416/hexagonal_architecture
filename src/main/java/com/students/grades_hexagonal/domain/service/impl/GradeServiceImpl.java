@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.students.grades_hexagonal.domain.exception.GradeLimitExceededException;
+import com.students.grades_hexagonal.domain.exception.GradesNotFoundException;
 import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.domain.model.Student;
 import com.students.grades_hexagonal.domain.model.Subject;
 import com.students.grades_hexagonal.domain.service.GradeService;
 import com.students.grades_hexagonal.domain.spi.GradePersistencePort;
-import com.students.grades_hexagonal.domain.exception.GradeLimitExceededException;
 
 @Service
 public class GradeServiceImpl implements GradeService {
@@ -29,6 +30,11 @@ public class GradeServiceImpl implements GradeService {
             throw new GradeLimitExceededException("Number of maximum grades achieved in the subject.");
         }
         gradePersistencePort.saveGrades(student, subject, grade);
+    }
+
+    @Override
+    public void updateGrades(Student student, Subject subject, Grade grade) {
+        gradePersistencePort.updateGrades(student, subject, grade);
     }
 
 }

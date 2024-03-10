@@ -63,4 +63,12 @@ public class GradeHandlerUseCaseImpl implements GradeHandlerUseCase {
         return response;
     }
 
+    @Override
+    public void updateGrade(String studentId, Long subjectId, CreateGradeRequest request) {
+        Student student = studentService.getStudentById(studentId);
+        Subject subject = subjectService.getSubjectById(subjectId);
+        Grade grade = createGradeRequestMapper.toGrade(request);
+        gradeService.updateGrades(student, subject, grade);
+    }
+
 }

@@ -11,4 +11,7 @@ public interface GradePersistencePort {
     void saveGrades(Student student, Subject subject, Grade grade);
 
     List<Grade> getGradesByStudentIdAndSubjectId(Long studentId, Long subjectId);
+
+    void updateGrades(Student student, Subject subject, Grade grade);
+
 }

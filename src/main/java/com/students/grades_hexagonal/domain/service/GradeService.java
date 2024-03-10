@@ -8,4 +8,6 @@ public interface GradeService {
 
     void saveGrades(Student student, Subject subject, Grade grade);
 
+    void updateGrades(Student student, Subject subject, Grade grade);
+
 }
