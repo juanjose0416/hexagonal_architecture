@@ -10,4 +10,6 @@ public interface GradeService {
 
     void updateGrades(Student student, Subject subject, Grade grade);
 
+    Double average(Long studentId, Long subjectId);
+
 }

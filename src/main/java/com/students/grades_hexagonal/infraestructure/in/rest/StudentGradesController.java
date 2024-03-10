@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.students.grades_hexagonal.app.dto.request.CreateGradeRequest;
+import com.students.grades_hexagonal.app.dto.response.GradeResponseDto;
 import com.students.grades_hexagonal.app.dto.response.GradeStudentResponse;
 import com.students.grades_hexagonal.app.usecase.GradeHandlerUseCase;
 
@@ -43,11 +45,19 @@ public class StudentGradesController {
     }
 
     @PutMapping(path = "/{studentId}/{subjectId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GradeStudentResponse> updateGrade(@PathVariable("studentId") String studentId,
+    public ResponseEntity<Void> updateGrade(@PathVariable("studentId") String studentId,
                                                             @PathVariable("subjectId") Long subjectId,
                                                             @RequestBody CreateGradeRequest request) {
         gradeHandlerUseCase.updateGrade(studentId, subjectId, request);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "average/{studentId}/{subjectId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GradeResponseDto> getGrades(@PathVariable("studentId") String studentId,
+                                                      @PathVariable("subjectId") Long subjectId)
+            throws JsonProcessingException {
+        GradeResponseDto gradeResponseDto = gradeHandlerUseCase.getAverage(studentId, subjectId);
+        return ResponseEntity.ok(gradeResponseDto);
     }
 
 }

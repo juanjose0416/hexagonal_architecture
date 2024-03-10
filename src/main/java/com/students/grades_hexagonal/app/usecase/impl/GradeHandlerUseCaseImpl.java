@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.students.grades_hexagonal.app.dto.request.CreateGradeRequest;
+import com.students.grades_hexagonal.app.dto.response.GradeResponseDto;
 import com.students.grades_hexagonal.app.dto.response.GradeStudentResponse;
 import com.students.grades_hexagonal.app.mapper.CreateGradeRequestMapper;
 import com.students.grades_hexagonal.app.mapper.GradeStudentResponseMapper;
@@ -69,6 +70,16 @@ public class GradeHandlerUseCaseImpl implements GradeHandlerUseCase {
         Subject subject = subjectService.getSubjectById(subjectId);
         Grade grade = createGradeRequestMapper.toGrade(request);
         gradeService.updateGrades(student, subject, grade);
+    }
+
+    @Override
+    public GradeResponseDto getAverage(String studentId, Long subjectId) {
+        Student student = studentService.getStudentById(studentId);
+        Subject subject = subjectService.getSubjectById(subjectId);
+        GradeResponseDto gradeResponseDto = new GradeResponseDto();
+        Double average = gradeService.average(student.getId(), subject.getId());
+        gradeResponseDto.setMark(average);
+        return gradeResponseDto;
     }
 
 }
