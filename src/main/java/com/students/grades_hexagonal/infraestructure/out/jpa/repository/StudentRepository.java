@@ -9,5 +9,7 @@ import com.students.grades_hexagonal.infraestructure.out.jpa.entity.StudentEntit
 
 @Repository
 public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
+
     Optional<StudentEntity> findByIdentificationCode(String studentId);
+
 }

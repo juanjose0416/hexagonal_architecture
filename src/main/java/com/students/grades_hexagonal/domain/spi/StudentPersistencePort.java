@@ -5,4 +5,5 @@ import com.students.grades_hexagonal.domain.model.Student;
 public interface StudentPersistencePort {
 
     Student getStudentById(String studentId);
+
 }

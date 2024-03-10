@@ -7,7 +7,7 @@ import com.students.grades_hexagonal.domain.service.SubjectService;
 import com.students.grades_hexagonal.domain.spi.SubjectPersistencePort;
 
 @Service
-public class SubjectServiceImpl implements SubjectService{
+public class SubjectServiceImpl implements SubjectService {
 
     private final SubjectPersistencePort subjectPersistencePort;
 

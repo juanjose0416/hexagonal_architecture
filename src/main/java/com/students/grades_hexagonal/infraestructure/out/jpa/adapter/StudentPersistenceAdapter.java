@@ -7,15 +7,12 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.students.grades_hexagonal.domain.model.Student;
-import com.students.grades_hexagonal.domain.model.Subject;
 import com.students.grades_hexagonal.domain.spi.StudentPersistencePort;
 import com.students.grades_hexagonal.infraestructure.exception.SubjectNotFoundException;
 import com.students.grades_hexagonal.infraestructure.out.jpa.entity.GradesEntity;
 import com.students.grades_hexagonal.infraestructure.out.jpa.entity.StudentEntity;
 import com.students.grades_hexagonal.infraestructure.out.jpa.entity.SubjectEntity;
-import com.students.grades_hexagonal.infraestructure.out.jpa.mapper.GradesEntityMapper;
 import com.students.grades_hexagonal.infraestructure.out.jpa.mapper.StudentEntityMapper;
-import com.students.grades_hexagonal.infraestructure.out.jpa.mapper.SubjectEntityMapper;
 import com.students.grades_hexagonal.infraestructure.out.jpa.repository.StudentRepository;
 
 @Component
@@ -43,6 +40,5 @@ public class StudentPersistenceAdapter implements StudentPersistencePort {
     private Map<SubjectEntity, List<GradesEntity>> groupGradesBySubject(List<GradesEntity> gradesEntities) {
         return gradesEntities.stream().collect(Collectors.groupingBy(GradesEntity::getSubject));
     }
-
 
 }

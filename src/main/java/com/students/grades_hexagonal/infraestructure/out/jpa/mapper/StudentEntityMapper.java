@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.stereotype.Component;
 
 import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.domain.model.Student;

@@ -2,8 +2,8 @@ package com.students.grades_hexagonal.app.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class CreateGradeRequest {
+
     @JsonProperty
     private double mark;
     @JsonProperty

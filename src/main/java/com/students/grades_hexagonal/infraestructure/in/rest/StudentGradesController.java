@@ -1,5 +1,7 @@
 package com.students.grades_hexagonal.infraestructure.in.rest;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.students.grades_hexagonal.app.dto.request.CreateGradeRequest;
+import com.students.grades_hexagonal.app.dto.response.AverageGradesDto;
 import com.students.grades_hexagonal.app.dto.response.GradeResponseDto;
 import com.students.grades_hexagonal.app.dto.response.GradeStudentResponse;
 import com.students.grades_hexagonal.app.usecase.GradeHandlerUseCase;
@@ -46,18 +48,23 @@ public class StudentGradesController {
 
     @PutMapping(path = "/{studentId}/{subjectId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateGrade(@PathVariable("studentId") String studentId,
-                                                            @PathVariable("subjectId") Long subjectId,
-                                                            @RequestBody CreateGradeRequest request) {
+                                            @PathVariable("subjectId") Long subjectId,
+                                            @RequestBody CreateGradeRequest request) {
         gradeHandlerUseCase.updateGrade(studentId, subjectId, request);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(path = "average/{studentId}/{subjectId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GradeResponseDto> getGrades(@PathVariable("studentId") String studentId,
-                                                      @PathVariable("subjectId") Long subjectId)
-            throws JsonProcessingException {
+    public ResponseEntity<GradeResponseDto> getAverage(@PathVariable("studentId") String studentId,
+                                                       @PathVariable("subjectId") Long subjectId) {
         GradeResponseDto gradeResponseDto = gradeHandlerUseCase.getAverage(studentId, subjectId);
         return ResponseEntity.ok(gradeResponseDto);
+    }
+
+    @GetMapping(path = "all/{subjectId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AverageGradesDto>> getAllAverage(@PathVariable("subjectId") Long subjectId) {
+        List<AverageGradesDto> allAverage = gradeHandlerUseCase.getAllAverage(subjectId);
+        return ResponseEntity.ok(allAverage);
     }
 
 }

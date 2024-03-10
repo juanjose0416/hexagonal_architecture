@@ -14,7 +14,9 @@ public interface GradesRepository extends JpaRepository<GradesEntity, Long> {
     Optional<List<GradesEntity>> findByStudentIdAndSubjectId(Long studentId, Long subjectId);
 
     Optional<GradesEntity> findByStudentIdAndSubjectIdAndGradingPeriod(Long studentId,
-                                                                                     Long subjectId,
-                                                                                     String gradingPeriod);
+                                                                       Long subjectId,
+                                                                       String gradingPeriod);
+
+    List<GradesEntity> findBySubjectId(Long studentId);
 
 }

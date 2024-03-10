@@ -46,4 +46,9 @@ public class GradeServiceImpl implements GradeService {
         return gradeList.stream().mapToDouble(Grade::getMark).average().orElse(0.0);
     }
 
+    @Override
+    public List<Student> getAllAverage(Long subjectId) {
+        return gradePersistencePort.getAllGradesBySubjectId(subjectId);
+    }
+
 }

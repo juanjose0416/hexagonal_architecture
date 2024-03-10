@@ -3,11 +3,8 @@ package com.students.grades_hexagonal.app.dto.response;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.students.grades_hexagonal.app.mapper.SubjectDtoSerializer;
 
-@JsonSerialize(using = SubjectDtoSerializer.class)
-public class SubjectDto implements Serializable{
+public class SubjectDto implements Serializable {
 
     @JsonProperty
     private Long id;

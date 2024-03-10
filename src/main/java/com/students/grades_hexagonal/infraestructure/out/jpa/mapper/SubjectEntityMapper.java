@@ -1,16 +1,11 @@
 package com.students.grades_hexagonal.infraestructure.out.jpa.mapper;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.domain.model.Subject;
-import com.students.grades_hexagonal.infraestructure.out.jpa.entity.GradesEntity;
 import com.students.grades_hexagonal.infraestructure.out.jpa.entity.SubjectEntity;
 
 @Mapper(componentModel = "spring",

@@ -1,12 +1,15 @@
 package com.students.grades_hexagonal.app.usecase.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.students.grades_hexagonal.app.dto.request.CreateGradeRequest;
+import com.students.grades_hexagonal.app.dto.response.AverageGradesDto;
 import com.students.grades_hexagonal.app.dto.response.GradeResponseDto;
 import com.students.grades_hexagonal.app.dto.response.GradeStudentResponse;
 import com.students.grades_hexagonal.app.mapper.CreateGradeRequestMapper;
@@ -55,7 +58,7 @@ public class GradeHandlerUseCaseImpl implements GradeHandlerUseCase {
     }
 
     @Override
-    public GradeStudentResponse getAllGrades(String studentId) throws JsonProcessingException {
+    public GradeStudentResponse getAllGrades(String studentId) {
         Student student = studentService.getStudentById(studentId);
         if (student.getSubjectsGrade() == null || student.getSubjectsGrade().isEmpty()) {
             throw new GradesNotFoundException("Grades not found");
@@ -75,11 +78,28 @@ public class GradeHandlerUseCaseImpl implements GradeHandlerUseCase {
     @Override
     public GradeResponseDto getAverage(String studentId, Long subjectId) {
         Student student = studentService.getStudentById(studentId);
-        Subject subject = subjectService.getSubjectById(subjectId);
         GradeResponseDto gradeResponseDto = new GradeResponseDto();
-        Double average = gradeService.average(student.getId(), subject.getId());
+        Double average = gradeService.average(student.getId(), subjectId);
         gradeResponseDto.setMark(average);
         return gradeResponseDto;
+    }
+
+    @Override
+    public List<AverageGradesDto> getAllAverage(Long subjectId) {
+        List<AverageGradesDto> averageGradesDtos = new ArrayList<>();
+        List<Student> students = gradeService.getAllAverage(subjectId);
+        students.forEach(student -> {
+            AverageGradesDto averageGradesDto = new AverageGradesDto();
+            averageGradesDto.setStudentId(student.getIdentificationCode());
+            averageGradesDto.setNameStudent(student.getName());
+            student.getSubjectsGrade().forEach((key, grades) -> {
+                averageGradesDto.setSubjectName(key.getName());
+                Double aver = grades.stream().mapToDouble(Grade::getMark).average().getAsDouble();
+                averageGradesDto.setAverage(aver);
+            });
+            averageGradesDtos.add(averageGradesDto);
+        });
+        return averageGradesDtos;
     }
 
 }

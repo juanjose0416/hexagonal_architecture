@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.students.grades_hexagonal.app.dto.request.CreateGradeRequest;
 import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.domain.model.Student;
-import com.students.grades_hexagonal.domain.model.Subject;
 
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
@@ -22,4 +21,5 @@ public interface CreateGradeRequestMapper {
     @Mapping(source = "createGradeRequest.mark", target = "mark")
     @Mapping(source = "createGradeRequest.gradingPeriod", target = "gradingPeriod")
     Grade toGrade(CreateGradeRequest createGradeRequest);
+
 }
