@@ -4,7 +4,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
 
 import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.infraestructure.out.jpa.entity.GradesEntity;

@@ -16,8 +16,6 @@ import lombok.Setter;
 @Table(name = "grades")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class GradesEntity {
 
     @Id
@@ -35,6 +33,46 @@ public class GradesEntity {
     private double mark;
 
     private String gradingPeriod;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public StudentEntity getStudent() {
+        return student;
+    }
+
+    public void setStudent(StudentEntity student) {
+        this.student = student;
+    }
+
+    public SubjectEntity getSubject() {
+        return subject;
+    }
+
+    public void setSubject(SubjectEntity subject) {
+        this.subject = subject;
+    }
+
+    public double getMark() {
+        return mark;
+    }
+
+    public void setMark(double mark) {
+        this.mark = mark;
+    }
+
+    public String getGradingPeriod() {
+        return gradingPeriod;
+    }
+
+    public void setGradingPeriod(String gradingPeriod) {
+        this.gradingPeriod = gradingPeriod;
+    }
 
 }
 

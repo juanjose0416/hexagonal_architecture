@@ -9,14 +9,17 @@ import com.students.grades_hexagonal.infraestructure.out.jpa.entity.SubjectEntit
 import com.students.grades_hexagonal.infraestructure.out.jpa.mapper.SubjectEntityMapper;
 import com.students.grades_hexagonal.infraestructure.out.jpa.repository.SubjectRepository;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Component
 public class SubjectPersistenceAdapter implements SubjectPersistencePort {
 
     private final SubjectEntityMapper subjectEntityMapper;
     private final SubjectRepository subjectRepository;
+
+    public SubjectPersistenceAdapter(SubjectEntityMapper subjectEntityMapper,
+                                     SubjectRepository subjectRepository) {
+        this.subjectEntityMapper = subjectEntityMapper;
+        this.subjectRepository = subjectRepository;
+    }
 
     @Override
     public Subject getSubjectById(Long subjectId) {

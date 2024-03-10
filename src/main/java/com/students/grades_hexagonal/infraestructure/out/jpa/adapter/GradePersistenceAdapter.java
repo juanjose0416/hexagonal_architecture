@@ -44,12 +44,9 @@ public class GradePersistenceAdapter implements GradePersistencePort {
 
     @Override
     public List<Grade> getGradesByStudentIdAndSubjectId(Long studentId, Long subjectId) {
-        List<GradesEntity> gradesEntities = gradesRepository.findByStudentIdAndSubjectId(studentId, subjectId).orElse(Collections.emptyList());
+        List<GradesEntity> gradesEntities = gradesRepository.findByStudentIdAndSubjectId(studentId, subjectId)
+                .orElse(Collections.emptyList());
         return gradesEntities.stream().map(gradesEntityMapper::toGrade).collect(Collectors.toList());
-    }
-
-    private List<GradesEntity> getGradesQuantity(Long studentId, Long subjectId) {
-        return gradesRepository.findByStudentIdAndSubjectId(studentId, subjectId).orElse(Collections.emptyList());
     }
 
 }

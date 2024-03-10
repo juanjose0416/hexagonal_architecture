@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.students.grades_hexagonal.domain.exception.GradeLimitExceededException;
+import com.students.grades_hexagonal.domain.exception.GradesNotFoundException;
 import com.students.grades_hexagonal.infraestructure.exception.StudentNotFoundException;
 import com.students.grades_hexagonal.infraestructure.exception.SubjectNotFoundException;
 
@@ -28,6 +29,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(GradeLimitExceededException.class)
     protected ResponseEntity<Object> handleGradeError(GradeLimitExceededException ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.FORBIDDEN, ex.getMessage(), ex));
+    }
+
+    @ExceptionHandler(GradesNotFoundException.class)
+    protected ResponseEntity<Object> handleGradeNotFoundError(GradesNotFoundException ex) {
         return buildResponseEntity(new ApiError(HttpStatus.FORBIDDEN, ex.getMessage(), ex));
     }
 

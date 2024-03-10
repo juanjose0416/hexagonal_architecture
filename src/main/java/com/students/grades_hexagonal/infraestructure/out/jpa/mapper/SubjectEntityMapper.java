@@ -1,12 +1,16 @@
 package com.students.grades_hexagonal.infraestructure.out.jpa.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Component;
 
+import com.students.grades_hexagonal.domain.model.Grade;
 import com.students.grades_hexagonal.domain.model.Subject;
+import com.students.grades_hexagonal.infraestructure.out.jpa.entity.GradesEntity;
 import com.students.grades_hexagonal.infraestructure.out.jpa.entity.SubjectEntity;
 
 @Mapper(componentModel = "spring",
@@ -14,6 +18,7 @@ import com.students.grades_hexagonal.infraestructure.out.jpa.entity.SubjectEntit
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface SubjectEntityMapper {
 
+    SubjectEntityMapper INSTANCE = Mappers.getMapper(SubjectEntityMapper.class);
 
     @Mapping(source = "subjectEntity.id", target = "id")
     @Mapping(source = "subjectEntity.name", target = "name")

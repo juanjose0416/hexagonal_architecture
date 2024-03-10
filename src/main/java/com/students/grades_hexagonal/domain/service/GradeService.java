@@ -7,4 +7,5 @@ import com.students.grades_hexagonal.domain.model.Subject;
 public interface GradeService {
 
     void saveGrades(Student student, Subject subject, Grade grade);
+
 }

@@ -19,8 +19,6 @@ import lombok.Setter;
 @Table(name = "subject")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class SubjectEntity {
 
     @Id
@@ -30,5 +28,29 @@ public class SubjectEntity {
     private String name;
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<GradesEntity> gradesEntities;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<GradesEntity> getGradesEntities() {
+        return gradesEntities;
+    }
+
+    public void setGradesEntities(List<GradesEntity> gradesEntities) {
+        this.gradesEntities = gradesEntities;
+    }
 
 }

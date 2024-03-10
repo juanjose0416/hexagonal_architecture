@@ -1,22 +1,23 @@
 package com.students.grades_hexagonal.domain.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class Student {
 
     private Long id;
     private String identificationCode;
     private String name;
-    private List<Subject> subjects;
+    private Map<Subject, List<Grade>> subjectsGrade;
 
     public Student(Long id,
                    String identificationCode,
                    String name,
-                   List<Subject> subjects) {
+                   Map<Subject, List<Grade>> subjectsGrade) {
         this.id = id;
         this.identificationCode = identificationCode;
         this.name = name;
-        this.subjects = subjects;
+        this.subjectsGrade = subjectsGrade;
     }
 
     public Student() {
@@ -46,20 +47,12 @@ public class Student {
         this.name = name;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
+    public Map<Subject, List<Grade>> getSubjectsGrade() {
+        return subjectsGrade;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
-    }
-
-    public double calculateAverageBySubject(long idSubject) {
-        return subjects.stream()
-                .filter(subject -> subject.getId() == idSubject)
-                .findFirst()
-                .map(Subject::calculateAverage)
-                .orElse(0.0);
+    public void setSubjectsGrade(Map<Subject, List<Grade>> subjectsGrade) {
+        this.subjectsGrade = subjectsGrade;
     }
 
 }

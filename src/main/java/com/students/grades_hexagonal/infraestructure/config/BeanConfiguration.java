@@ -23,10 +23,8 @@ import com.students.grades_hexagonal.infraestructure.out.jpa.repository.GradesRe
 import com.students.grades_hexagonal.infraestructure.out.jpa.repository.StudentRepository;
 import com.students.grades_hexagonal.infraestructure.out.jpa.repository.SubjectRepository;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
-@ComponentScan(basePackages = {"com.students.grades_hexagonal.infraestructure.out.jpa.mapper"})
+@ComponentScan(basePackages = { "com.students.grades_hexagonal.infraestructure.out.jpa.mapper" })
 public class BeanConfiguration {
 
     private final GradesRepository gradesRepository;

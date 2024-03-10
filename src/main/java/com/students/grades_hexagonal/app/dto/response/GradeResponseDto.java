@@ -1,11 +1,17 @@
 package com.students.grades_hexagonal.app.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Getter
-@Setter
 public class GradeResponseDto {
+
+    @JsonProperty
     private double mark;
+    @JsonProperty
     private String gradingPeriod;
+
+    public GradeResponseDto(double mark, String gradingPeriod) {
+        this.mark = mark;
+        this.gradingPeriod = gradingPeriod;
+    }
+
 }

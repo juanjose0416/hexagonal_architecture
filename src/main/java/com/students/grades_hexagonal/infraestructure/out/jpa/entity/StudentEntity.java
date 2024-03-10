@@ -18,8 +18,6 @@ import lombok.Setter;
 @Table(name = "student")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class StudentEntity {
 
     @Id
@@ -30,5 +28,37 @@ public class StudentEntity {
     private String name;
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<GradesEntity> gradesEntities;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getIdentificationCode() {
+        return identificationCode;
+    }
+
+    public void setIdentificationCode(String identificationCode) {
+        this.identificationCode = identificationCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<GradesEntity> getGradesEntities() {
+        return gradesEntities;
+    }
+
+    public void setGradesEntities(List<GradesEntity> gradesEntities) {
+        this.gradesEntities = gradesEntities;
+    }
 
 }
