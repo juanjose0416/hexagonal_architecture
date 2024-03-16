@@ -1,5 +1,7 @@
 package com.students.grades_hexagonal.app.dto.response;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AverageGradesDto {
@@ -53,6 +55,25 @@ public class AverageGradesDto {
 
     public void setAverage(Double average) {
         this.average = average;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AverageGradesDto that = (AverageGradesDto) o;
+        return Objects.equals(studentId, that.studentId) &&
+                Objects.equals(nameStudent, that.nameStudent) &&
+                Objects.equals(subjectName, that.subjectName) && Objects.equals(average, that.average);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentId, nameStudent, subjectName, average);
     }
 
 }

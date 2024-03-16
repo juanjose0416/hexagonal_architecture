@@ -1,5 +1,7 @@
 package com.students.grades_hexagonal.app.dto.response;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,6 +35,24 @@ public class GradeResponseDto {
 
     public void setGradingPeriod(String gradingPeriod) {
         this.gradingPeriod = gradingPeriod;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GradeResponseDto that = (GradeResponseDto) o;
+        return Double.compare(that.mark, mark) == 0 &&
+                Objects.equals(gradingPeriod, that.gradingPeriod);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mark, gradingPeriod);
     }
 
 }

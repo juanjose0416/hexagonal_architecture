@@ -76,7 +76,6 @@ class GradePersistenceAdapterTest {
         gradesEntity = new GradesEntity();
         gradesEntity.setId(1L);
         studentEntity = new StudentEntity();
-        student.setId(1L);
         subjectEntity = new SubjectEntity();
         subjectEntity.setId(1L);
         gradesEntity.setStudent(studentEntity);
