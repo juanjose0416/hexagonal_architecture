@@ -63,8 +63,7 @@ public class GradeHandlerUseCaseImpl implements GradeHandlerUseCase {
         if (student.getSubjectsGrade() == null || student.getSubjectsGrade().isEmpty()) {
             throw new GradesNotFoundException("Grades not found");
         }
-        GradeStudentResponse response = gradeStudentResponseMapper.toGradeStudentResponse(student);
-        return response;
+        return  gradeStudentResponseMapper.toGradeStudentResponse(student);
     }
 
     @Override
